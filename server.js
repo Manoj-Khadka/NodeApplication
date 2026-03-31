@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 
 const app = express();
 
@@ -12,11 +11,7 @@ app.use(bodyParser.urlencoded());
 app.use("/admin", adminData.routes);
 app.use(shopRoutes);
 app.use(shopRoutes);
-
-app.use((req, res, next) => {
-  res
-    .status(404)
-    .sendFile(path.join(__dirname, "views", "page-not-found.html"));
-});
+const errorController = require("./controllers/error");
+app.use(errorController.get404);
 
 app.listen(3000);

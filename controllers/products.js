@@ -12,7 +12,9 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll();
+  Product.fetchAll((products) => {
+    console.log(products);
+  });
   console.log(products);
   res.sendFile(path.join(rootDir, "views", "shop.html"));
 };

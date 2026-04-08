@@ -5,8 +5,10 @@ exports.getPosts = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
+  console.log("Creating a post...", req.body);
   const title = req.body.title;
   const content = req.body.content;
+  console.log(title, content);
   // Create this part in DB
   res.status(201).json({
     message: "Post created successfully",
